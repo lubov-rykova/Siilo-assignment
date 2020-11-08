@@ -9,12 +9,15 @@ public class ProfessionScreen extends BaseScreen {
 
     public static final String PHYSICIAN = "profession_item_physician";
 
-
     public ProfessionScreen(AndroidDriver<MobileElement> driver, WebDriverWait wait) {
         super(driver, wait);
     }
 
     public void waitLoaded() {
-        super.waitLoaded(PHYSICIAN);
+        super.waitLoadedById(PHYSICIAN);
+    }
+
+    public void chooseProfession(String profession) {
+        super.clickById(profession);
     }
 }

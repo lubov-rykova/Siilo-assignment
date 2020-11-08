@@ -11,22 +11,34 @@ public class BaseScreen {
     protected AndroidDriver<MobileElement> driver;
     protected WebDriverWait wait;
 
-    final protected String basePath = "com.siilo.android.registration:id/";
+    public static final String BUTTON_DONE = "button_done";
+
+    final protected String BASE_PATH = "com.siilo.android.registration:id/";
 
     public BaseScreen(AndroidDriver<MobileElement> driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
     }
 
-    public void click(String id) {
-        driver.findElement(By.id(basePath + id)).click();
+    protected void clickById(String id) {
+        driver.findElement(By.id(BASE_PATH + id)).click();
     }
 
-    protected void waitLoaded(String id) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(basePath + id)));
+    protected void clickByText(String text) {
+        driver.findElement(By.linkText(text)).click();
+    }
+
+    protected void waitLoadedById(String id) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(BASE_PATH + id)));
+    }
+
+    protected void waitLoadedByText(String text) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@text,\"" + text + "\")]")));
     }
 
     protected void inputText(String id, String text) {
-        driver.findElement(By.id(basePath + id)).sendKeys(text);
+        driver.findElement(By.id(BASE_PATH + id)).sendKeys(text);
     }
+
+
 }

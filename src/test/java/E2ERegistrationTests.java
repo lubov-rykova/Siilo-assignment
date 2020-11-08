@@ -1,10 +1,16 @@
 import org.junit.Test;
 
 import screens.AgreementScreen;
+import screens.ConfirmationEmailScreen;
+import screens.CountryScreen;
 import screens.EmailScreen;
+import screens.NotificationScreen;
+import screens.PhoneScreen;
 import screens.ProfessionScreen;
 import screens.ProfileScreen;
 import screens.StartScreen;
+import screens.SuccessScreen;
+import screens.VerificationCodeScreen;
 
 public class E2ERegistrationTests extends BaseTest {
 
@@ -12,22 +18,47 @@ public class E2ERegistrationTests extends BaseTest {
     public void startActivity() {
         StartScreen start = new StartScreen(driver, wait);
         start.waitLoaded();
-        start.click(StartScreen.NEW_USER);
+        start.newUser();
 
         AgreementScreen agreement = new AgreementScreen(driver, wait);
         agreement.waitLoaded();
-        agreement.click(AgreementScreen.ACCEPT_AGREEMENT);
+        agreement.accept();
 
         ProfileScreen profile = new ProfileScreen(driver, wait);
         profile.waitLoaded();
-        profile.submitCredentials("Rick", "Sanchez");
+        profile.submit("Rick", "Sanchez");
 
         ProfessionScreen profession = new ProfessionScreen(driver, wait);
         profession.waitLoaded();
-        profession.click(ProfessionScreen.PHYSICIAN);
+        profession.chooseProfession(ProfessionScreen.PHYSICIAN);
 
         EmailScreen email = new EmailScreen(driver, wait);
         email.waitLoaded();
-        email.submitEmail("ricksanchez@mail.ru");
+        email.submit("ricksanchez@mail.ru");
+
+        ConfirmationEmailScreen confirm = new ConfirmationEmailScreen(driver, wait);
+        confirm.waitLoaded();
+        confirm.submit();
+
+        PhoneScreen phone = new PhoneScreen(driver, wait);
+        phone.waitLoaded();
+
+        CountryScreen country = new CountryScreen(driver, wait);
+        country.waitLoaded();
+        country.submit(CountryScreen.COUNTRY_CODE_31);
+
+        phone.waitLoaded();
+        phone.submit("1111111111");
+
+        VerificationCodeScreen verificationCode = new VerificationCodeScreen(driver, wait);
+        verificationCode.waitLoaded();
+        verificationCode.submit("12345");
+
+        NotificationScreen notification = new NotificationScreen(driver, wait);
+        notification.waitLoaded();
+        notification.submit(NotificationScreen.PRIVATE);
+
+        SuccessScreen success = new SuccessScreen(driver, wait);
+        success.waitLoaded();
     }
 }

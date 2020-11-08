@@ -5,22 +5,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
-public class EmailScreen extends BaseScreen {
+public class PhoneScreen extends BaseScreen {
 
-    public static final String EMAIL = "reg_email";
+    public static final String PHONE = "reg_phonenumber";
 
-    public EmailScreen(AndroidDriver<MobileElement> driver, WebDriverWait wait) {
+    public PhoneScreen(AndroidDriver<MobileElement> driver, WebDriverWait wait) {
         super(driver, wait);
     }
 
     public void waitLoaded() {
-        super.waitLoadedById(EMAIL);
+        super.waitLoadedById(PHONE);
     }
 
-    public void submit(String email) {
-        super.inputText(EMAIL, email);
+    public void submit(String number) {
+        super.inputText(PHONE, number);
         driver.hideKeyboard();
         super.clickById(BUTTON_DONE);
     }
-
 }

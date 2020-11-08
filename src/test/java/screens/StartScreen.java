@@ -4,7 +4,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import screens.BaseScreen;
 
 public class StartScreen extends BaseScreen {
 
@@ -15,6 +14,10 @@ public class StartScreen extends BaseScreen {
     }
 
     public void waitLoaded() {
-        super.waitLoaded(NEW_USER);
+        super.waitLoadedById(NEW_USER);
+    }
+
+    public void newUser() {
+        super.clickById(NEW_USER);
     }
 }

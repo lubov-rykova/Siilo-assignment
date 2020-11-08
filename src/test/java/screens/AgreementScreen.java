@@ -14,7 +14,11 @@ public class AgreementScreen extends BaseScreen {
     }
 
     public void waitLoaded() {
-        super.waitLoaded(ACCEPT_AGREEMENT);
+        super.waitLoadedById(ACCEPT_AGREEMENT);
+    }
+
+    public void accept() {
+        super.clickById(ACCEPT_AGREEMENT);
     }
 
 }
