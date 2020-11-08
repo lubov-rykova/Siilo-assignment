@@ -1,0 +1,14 @@
+group 'com.testobject'
+version '1.0'
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'io.appium:java-client:7.3.0'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-server', version: '3.141.59'
+}
