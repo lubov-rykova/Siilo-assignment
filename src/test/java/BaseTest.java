@@ -1,7 +1,6 @@
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,10 +11,8 @@ import java.net.URL;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
 
-public class Siilo {
-
+public class BaseTest {
     public AndroidDriver<MobileElement> driver;
     public WebDriverWait wait;
 
@@ -32,12 +29,6 @@ public class Siilo {
 
         driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), dc);
         wait = new WebDriverWait(driver, 10);
-    }
-
-    @Test
-    public void startActivity() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.siilo.android.registration:id/button_new_user"))).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.siilo.android.registration:id/button_yes_agree")));
     }
 
     @After
