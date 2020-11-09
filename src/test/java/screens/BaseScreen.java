@@ -14,6 +14,7 @@ public class BaseScreen {
     protected WebDriverWait wait;
 
     public static final String BUTTON_DONE = "button_done";
+    public static final String BUTTON_DONE_TEXT = "Next";
 
     final protected String BASE_PATH = "com.siilo.android.registration:id/";
 
@@ -21,6 +22,8 @@ public class BaseScreen {
         this.driver = driver;
         this.wait = wait;
     }
+
+    public void waitLoaded() {}
 
     protected void clickByText(String text) {
         String selector = "new UiSelector().textContains(\"" + text + "\")";
@@ -39,12 +42,17 @@ public class BaseScreen {
     }
 
     protected void waitLoadedByText(String text) {
-        wait.until(ExpectedConditions.visibilityOf(driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"" + text + "\")")));
+        wait.until(ExpectedConditions.visibilityOf(
+            driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"" + text + "\")")
+        ));
     }
 
     protected void inputText(String id, String text) {
         driver.findElement(By.id(BASE_PATH + id)).sendKeys(text);
     }
 
+    protected MobileElement elementById(String id) {
+        return driver.findElement(By.id(BASE_PATH + id));
+    }
 
 }

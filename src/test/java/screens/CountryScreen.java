@@ -21,6 +21,7 @@ public class CountryScreen extends BaseScreen {
     }
 
     public void submit(String code) {
+        driver.hideKeyboard();
         super.clickByText(code);
     }
 }

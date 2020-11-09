@@ -15,7 +15,7 @@ import screens.VerificationCodeScreen;
 public class E2ERegistrationTests extends BaseTest {
 
     @Test
-    public void startActivity() throws Exception {
+    public void registrationHappyPath() {
         StartScreen start = new StartScreen(driver, wait);
         start.waitLoaded();
         start.newUser();
@@ -36,9 +36,9 @@ public class E2ERegistrationTests extends BaseTest {
         email.waitLoaded();
         email.submit("ricksanchez@mail.ru");
 
-        ConfirmationEmailScreen confirm = new ConfirmationEmailScreen(driver, wait);
-        confirm.waitLoaded();
-        confirm.submit();
+        ConfirmationEmailScreen confirmEmail = new ConfirmationEmailScreen(driver, wait);
+        confirmEmail.waitLoaded();
+        confirmEmail.submit();
 
         PhoneScreen phone = new PhoneScreen(driver, wait);
         phone.waitLoaded();
@@ -61,5 +61,12 @@ public class E2ERegistrationTests extends BaseTest {
 
         SuccessScreen success = new SuccessScreen(driver, wait);
         success.waitLoaded();
+    }
+
+    @Test
+    public void registrationHappyPathNavigatorWithoutCountyScreen() {
+        ScreenNavigator navigator = new ScreenNavigator(driver, wait);
+        navigator.countryCode = CountryScreen.CODE_31;
+        while (navigator.next() != null);
     }
 }
