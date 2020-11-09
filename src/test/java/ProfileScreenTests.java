@@ -3,10 +3,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import screens.AgreementScreen;
-import screens.ConfirmationEmailScreen;
 import screens.ProfessionScreen;
 import screens.ProfileScreen;
-import screens.VerificationCodeScreen;
 
 public class ProfileScreenTests extends BaseTest{
     protected ProfileScreen profile;
