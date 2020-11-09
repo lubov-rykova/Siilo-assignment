@@ -25,6 +25,9 @@ public class BaseScreen {
 
     public void waitLoaded() {}
 
+    public MobileElement getSubmitButton() {
+        return driver.findElementById(BASE_PATH + BUTTON_DONE);
+    }
 
     protected void inputText(String id, String text) {
         driver.findElement(By.id(BASE_PATH + id)).sendKeys(text);
@@ -32,6 +35,11 @@ public class BaseScreen {
 
     protected MobileElement elementById(String id) {
         return driver.findElement(By.id(BASE_PATH + id));
+    }
+
+    protected MobileElement elementByText(String text) {
+        String selector = "new UiSelector().textContains(\"" + text + "\")";
+        return driver.findElementByAndroidUIAutomator(selector);
     }
 
     protected void clickByText(String text) {
