@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
@@ -20,12 +22,16 @@ public class BaseScreen {
         this.wait = wait;
     }
 
-    protected void clickById(String id) {
-        driver.findElement(By.id(BASE_PATH + id)).click();
+    protected void clickByText(String text) {
+        String selector = "new UiSelector().textContains(\"" + text + "\")";
+        driver.findElementByAndroidUIAutomator(selector).click();
     }
 
-    protected void clickByText(String text) {
-        driver.findElement(By.linkText(text)).click();
+    protected void clickById(String id) {
+        String selector = "new UiSelector().resourceId(\"" + BASE_PATH + id + "\")";
+        List<MobileElement> all = driver.findElementsByAndroidUIAutomator(selector);
+        // Dirty hack: selecting last element because some elements are not identifiable uniquely.
+        all.get(all.size() - 1).click();
     }
 
     protected void waitLoadedById(String id) {
@@ -33,7 +39,7 @@ public class BaseScreen {
     }
 
     protected void waitLoadedByText(String text) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@text,\"" + text + "\")]")));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\"" + text + "\")")));
     }
 
     protected void inputText(String id, String text) {

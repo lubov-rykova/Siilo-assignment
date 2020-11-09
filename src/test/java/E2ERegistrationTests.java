@@ -15,7 +15,7 @@ import screens.VerificationCodeScreen;
 public class E2ERegistrationTests extends BaseTest {
 
     @Test
-    public void startActivity() {
+    public void startActivity() throws Exception {
         StartScreen start = new StartScreen(driver, wait);
         start.waitLoaded();
         start.newUser();
@@ -42,10 +42,11 @@ public class E2ERegistrationTests extends BaseTest {
 
         PhoneScreen phone = new PhoneScreen(driver, wait);
         phone.waitLoaded();
+        phone.openCountryList();
 
         CountryScreen country = new CountryScreen(driver, wait);
         country.waitLoaded();
-        country.submit(CountryScreen.COUNTRY_CODE_31);
+        country.submit(CountryScreen.CODE_31);
 
         phone.waitLoaded();
         phone.submit("1111111111");

@@ -8,6 +8,7 @@ import io.appium.java_client.android.AndroidDriver;
 public class PhoneScreen extends BaseScreen {
 
     public static final String PHONE = "reg_phonenumber";
+    public static final String COUNRTY = "reg_country_text";
 
     public PhoneScreen(AndroidDriver<MobileElement> driver, WebDriverWait wait) {
         super(driver, wait);
@@ -15,6 +16,10 @@ public class PhoneScreen extends BaseScreen {
 
     public void waitLoaded() {
         super.waitLoadedById(PHONE);
+    }
+
+    public void openCountryList() {
+        super.clickById(COUNRTY);
     }
 
     public void submit(String number) {
