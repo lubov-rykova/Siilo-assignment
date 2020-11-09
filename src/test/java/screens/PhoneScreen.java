@@ -25,6 +25,10 @@ public class PhoneScreen extends BaseScreen {
         super.waitLoadedById(PHONE);
     }
 
+    public void waitNotLoaded() {
+        super.waitNotLoadedById(PHONE);
+    }
+
     public void openCountryList() {
         driver.hideKeyboard();
         super.clickById(COUNTRY);
@@ -44,14 +48,18 @@ public class PhoneScreen extends BaseScreen {
                 return false;
             }
 
-            //todo replace COUNTRY_TEXT with country name
             MobileElement country = elementById(COUNTRY);
-           if (!country.isDisplayed() || !country.getText().equals(COUNTRY_TEXT)) {
+           if (!country.isDisplayed()) {
                return false;
            }
 
             MobileElement phone = elementById(PHONE);
-            if (!phone.isDisplayed() || !phone.getText().equals(PHONE_TEXT)) {
+            if (!phone.isDisplayed()) {
+                return false;
+            }
+
+            MobileElement button = elementById(BaseScreen.BUTTON_DONE);
+            if (!button.isDisplayed() || !button.getText().equals(BaseScreen.BUTTON_DONE_TEXT)) {
                 return false;
             }
         } catch (NoSuchElementException e) {
@@ -60,7 +68,11 @@ public class PhoneScreen extends BaseScreen {
         return true;
     }
 
-    public String getCountryCode() {
-        return elementById(COUNTRY).getText();
+    public MobileElement getCountry() {
+        return elementById(COUNTRY);
+    }
+
+    public MobileElement getPhone() {
+        return elementById(PHONE);
     }
 }

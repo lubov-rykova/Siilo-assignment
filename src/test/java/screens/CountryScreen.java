@@ -9,6 +9,7 @@ public class CountryScreen extends BaseScreen {
 
     public static final String SEARCH = "search_input";
     public static final String CODE_31 = "+31";
+    public static final String COUNTRY_NETHERLANDS = "NETHERLANDS";
 //    public static final String COUNTRY_LIST = "recycler_view";
 
 

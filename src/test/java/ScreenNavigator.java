@@ -86,7 +86,7 @@ public class ScreenNavigator {
         if (currentScreen instanceof PhoneScreen) {
             PhoneScreen screen = (PhoneScreen) currentScreen;
             // todo fix after fixing bug with pre-filled country
-            if (countryCode != null && screen.getCountryCode().equals(PhoneScreen.COUNTRY_TEXT)) {
+            if (countryCode != null && screen.getCountry().equals(PhoneScreen.COUNTRY_TEXT)) {
                 screen.openCountryList();
                 currentScreen = new CountryScreen(driver, wait);
             } else {
@@ -121,5 +121,17 @@ public class ScreenNavigator {
             return null;
         }
         return currentScreen;
+    }
+
+    public BaseScreen goToScreen(Class screenClass) {
+        BaseScreen current;
+        do {
+            current = next();
+            if (screenClass.isInstance(current)) {
+                return current;
+            }
+        } while(current != null);
+
+        return null;
     }
 }

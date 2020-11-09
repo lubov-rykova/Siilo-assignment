@@ -1,5 +1,7 @@
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,9 +14,10 @@ import io.appium.java_client.android.AndroidDriver;
 public class BaseTest {
     public AndroidDriver<MobileElement> driver;
     public WebDriverWait wait;
+    public ScreenNavigator navigator;
 
     @Before
-    public void setUp() throws MalformedURLException {
+    public void setUpDriver() throws MalformedURLException {
         DesiredCapabilities dc = new DesiredCapabilities();
 
         dc.setCapability("deviceName", "Pixel 4 API 28");
@@ -26,10 +29,11 @@ public class BaseTest {
 
         driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), dc);
         wait = new WebDriverWait(driver, 10);
+        navigator = new ScreenNavigator(driver, wait);
     }
 
     @After
-    public void tearDown() {
+    public void tearDownDriver() {
         driver.quit();
     }
 }

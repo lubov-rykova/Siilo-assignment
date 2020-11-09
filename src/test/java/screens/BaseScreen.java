@@ -25,6 +25,15 @@ public class BaseScreen {
 
     public void waitLoaded() {}
 
+
+    protected void inputText(String id, String text) {
+        driver.findElement(By.id(BASE_PATH + id)).sendKeys(text);
+    }
+
+    protected MobileElement elementById(String id) {
+        return driver.findElement(By.id(BASE_PATH + id));
+    }
+
     protected void clickByText(String text) {
         String selector = "new UiSelector().textContains(\"" + text + "\")";
         driver.findElementByAndroidUIAutomator(selector).click();
@@ -47,12 +56,7 @@ public class BaseScreen {
         ));
     }
 
-    protected void inputText(String id, String text) {
-        driver.findElement(By.id(BASE_PATH + id)).sendKeys(text);
+    protected void waitNotLoadedById(String id) {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id(BASE_PATH + id)));
     }
-
-    protected MobileElement elementById(String id) {
-        return driver.findElement(By.id(BASE_PATH + id));
-    }
-
 }
